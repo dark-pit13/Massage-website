@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Appointments</string>
+
+    <!-- ==================== EDIT THIS ONE LINE ====================
+         Your own site, over https, pointing at the app page you uploaded. -->
+    <string name="app_url" translatable="false">https://YOUR-DOMAIN/appointments-app.php</string>
+
+    <string name="offline_title">No connection</string>
+    <string name="offline_body">Appointments needs the internet to reach your schedule. Check your connection, then try again.</string>
+    <string name="retry">Try again</string>
+    <string name="external_failed">No app on this phone can open that.</string>
+    <string name="url_not_set">Set your website address in res/values/strings.xml before building.</string>
+</resources>

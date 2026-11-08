@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Release signing is read from gradle.properties when it is filled in; without
+// it the release build is simply left unsigned and `assembleDebug` still works.
+def storeFilePath = project.findProperty('APPOINTMENTS_STORE_FILE')
+def hasSigning = storeFilePath != null && file(storeFilePath).exists()
+
+android {
+    namespace 'com.julietabetancourt.appointments'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.julietabetancourt.appointments"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    if (hasSigning) {
+        signingConfigs {
+            release {
+                storeFile file(storeFilePath)
+                storePassword project.findProperty('APPOINTMENTS_STORE_PASSWORD')
+                keyAlias project.findProperty('APPOINTMENTS_KEY_ALIAS')
+                keyPassword project.findProperty('APPOINTMENTS_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (hasSigning) {
+                signingConfig signingConfigs.release
+            }
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

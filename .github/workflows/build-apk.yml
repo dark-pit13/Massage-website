@@ -1,0 +1,76 @@
+name: Build the APK
+
+# Builds an installable Android package in the cloud, so nothing has to be
+# installed on your own computer. Run it from the Actions tab, type your
+# website address, and download the APK when it finishes.
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: "Your appointments page, e.g. https://example.com/appointments-app.php"
+        required: true
+        default: "https://YOUR-DOMAIN/appointments-app.php"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the project
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up the Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Point the app at your website
+        env:
+          SITE_URL: ${{ github.event.inputs.site_url }}
+        run: |
+          python3 - "$SITE_URL" <<'PY'
+          import re, sys
+          url = sys.argv[1].strip()
+          if not url.startswith("https://"):
+              raise SystemExit("The address must start with https:// — the app refuses plain http.")
+          safe = url.replace("&", "&amp;").replace("<", "&lt;")
+          path = "app/src/main/res/values/strings.xml"
+          text = open(path, encoding="utf-8").read()
+          text, count = re.subn(
+              r'(<string name="app_url" translatable="false">)[^<]*(</string>)',
+              lambda m: m.group(1) + safe + m.group(2),
+              text,
+          )
+          if count != 1:
+              raise SystemExit("Could not find app_url in strings.xml")
+          open(path, "w", encoding="utf-8").write(text)
+          print("Building for", url)
+          PY
+
+      - name: Check the address was filled in
+        run: |
+          if grep -q "YOUR-DOMAIN" app/src/main/res/values/strings.xml; then
+            echo "::error::The website address is still the placeholder. Run this from the Actions tab and type your real https address."
+            exit 1
+          fi
+
+      - name: Build
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Upload the APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: appointments-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
