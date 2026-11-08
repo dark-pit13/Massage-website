@@ -29,8 +29,25 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up the Android SDK
-        uses: android-actions/setup-android@v3
+      # The runner already ships the Android SDK. The setup-android action is not
+      # used because it tries to install the retired "tools" package and fails.
+      - name: Prepare the Android SDK
+        run: |
+          set -euo pipefail
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "Using SDK at $SDK"
+          SDKMANAGER="$(ls "$SDK"/cmdline-tools/*/bin/sdkmanager 2>/dev/null | head -1)"
+          if [ -z "$SDKMANAGER" ]; then
+            echo "::error::No sdkmanager found under $SDK/cmdline-tools"
+            exit 1
+          fi
+          yes | "$SDKMANAGER" --sdk_root="$SDK" --licenses > /dev/null 2>&1 || true
+          "$SDKMANAGER" --sdk_root="$SDK" "platforms;android-34" "build-tools;34.0.0"
+          {
+            echo "ANDROID_HOME=$SDK"
+            echo "ANDROID_SDK_ROOT=$SDK"
+          } >> "$GITHUB_ENV"
+          echo "sdk.dir=$SDK" > local.properties
 
       - name: Point the app at your website
         env:
