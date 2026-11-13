@@ -979,9 +979,13 @@
             const date = blockForm.elements.date.value;
             if (!date) return { error: t('pickDate') };
             if (date < todayISO()) return { error: t('datePassed') };
-            const hours = Number(blockForm.elements.hours.value) || 1;
             const start = Number(blockForm.elements.time.value.slice(0, 2));
-            if (start + hours > CLOSE_HOUR) return { error: t('runsPast', { hour: hourTick(CLOSE_HOUR) }) };
+            const endField = blockForm.elements.final;
+            const end = endField ? Number(String(endField.value).slice(0, 2))
+                                 : start + (Number(blockForm.elements.hours.value) || 1);
+            if (end <= start) return { error: t('endBeforeStart') };
+            const hours = end - start;
+            if (end > CLOSE_HOUR) return { error: t('runsPast', { hour: hourTick(CLOSE_HOUR) }) };
             const taken = occupiedHours(date);
             for (let h = start; h < start + hours; h += 1) {
                 if (taken.has(h)) return { error: t('alreadyTaken', { hour: hourTick(h), day: relativeDay(date) }) };
@@ -1030,8 +1034,13 @@
         blockForm.elements.dayDate.value = start;
         blockForm.elements.fromDate.value = start;
         blockForm.elements.toDate.value = start;
-        blockForm.elements.hours.value = '1';
         if (hour !== undefined) blockForm.elements.time.value = pad(hour);
+        if (blockForm.elements.final) {
+            const from = Number(blockForm.elements.time.value.slice(0, 2));
+            blockForm.elements.final.value = pad(Math.min(from + 1, CLOSE_HOUR));
+        } else if (blockForm.elements.hours) {
+            blockForm.elements.hours.value = '1';
+        }
         document.querySelectorAll('dialog[open]').forEach((d) => { if (d.id !== 'sheet-block') d.close(); });
         setBlockMode(mode);
         $('#sheet-block').showModal();
@@ -1076,9 +1085,18 @@
     document.querySelectorAll('#block-form .chip').forEach((chip) => chip.addEventListener('click', () => {
         blockForm.elements.label.value = t(chip.dataset.labelKey);
     }));
-    ['date', 'hours', 'time', 'dayDate', 'fromDate', 'toDate'].forEach((field) => {
-        blockForm.elements[field].addEventListener('input', previewBlock);
-        blockForm.elements[field].addEventListener('change', previewBlock);
+    const syncBlockEnd = () => {
+        const end = blockForm.elements.final;
+        if (!end) return;
+        const start = Number(blockForm.elements.time.value.slice(0, 2));
+        if (Number(String(end.value).slice(0, 2)) <= start) end.value = pad(Math.min(start + 1, CLOSE_HOUR));
+    };
+    ['date', 'hours', 'final', 'time', 'dayDate', 'fromDate', 'toDate'].forEach((field) => {
+        const input = blockForm.elements[field];
+        if (!input) return;
+        const onChange = () => { if (field === 'time') syncBlockEnd(); previewBlock(); };
+        input.addEventListener('input', onChange);
+        input.addEventListener('change', onChange);
     });
     blockForm.addEventListener('submit', (event) => { event.preventDefault(); runBlock(); });
     document.querySelectorAll('[data-open-block]').forEach((b) => b.addEventListener('click', () => {

@@ -103,7 +103,7 @@ $e = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES, 'U
 <link rel="icon" href="/Images/app-icon-192.png" sizes="192x192">
 <link rel="stylesheet" href="https://use.typekit.net/sls6qmt.css">
 <link rel="stylesheet" href="/css/appointments-app.css?v=5">
-<?php if ($authenticated): ?><script src="/Js/appointments-app.js?v=6" defer></script><?php else: ?><script src="/Js/appointments-gate.js?v=1" defer></script><?php endif; ?>
+<?php if ($authenticated): ?><script src="/Js/appointments-app.js?v=7" defer></script><?php else: ?><script src="/Js/appointments-gate.js?v=1" defer></script><?php endif; ?>
 </head>
 <body class="<?= $authenticated ? 'is-app' : 'is-gate' ?>">
 <?php if (!$authenticated): ?>
@@ -333,8 +333,12 @@ $e = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES, 'U
                         <?php endfor; ?>
                     </select>
                 </label>
-                <label><span data-i18n="fieldHours"></span>
-                    <input name="hours" type="number" min="1" max="<?= $closing - $opening ?>" step="1" value="1" inputmode="numeric">
+                <label><span data-i18n="fieldEnd"></span>
+                    <select name="final">
+                        <?php for ($hour = $opening + 1; $hour <= $closing; $hour++): ?>
+                        <option value="<?= sprintf('%02d:00', $hour) ?>"><?= $e($clock($hour)) ?></option>
+                        <?php endfor; ?>
+                    </select>
                 </label>
             </div>
 

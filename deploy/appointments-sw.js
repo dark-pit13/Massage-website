@@ -4,7 +4,7 @@
    entirely alone, so sign-in, availability and bookings are never served
    from a cache and the customer-facing site behaves exactly as before. */
 
-const CACHE = 'appointments-shell-v6';
+const CACHE = 'appointments-shell-v7';
 
 const SHELL = [
     '/css/appointments-app.css',
