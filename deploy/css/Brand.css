@@ -1,0 +1,1397 @@
+/* Colors and sizing from Website-rebranded.zip.
+   Load after the layout styles. Existing animation settings stay in place. */
+:root {
+    --cypress: #16332B;
+    --pine: #22493D;
+    --moss: #1B3C32;
+    --euc: #8FAE9B;
+    --amber: #C08A3E;
+    --amber-lift: #D29A4A;
+    --linen: #F6F1E7;
+    --sand: #E7DFD0;
+    --ink: #101A16;
+    --page-background: var(--linen);
+    /* One background for every screen size: the phone leather texture with its soft green overlay. */
+    --site-background-image: url("/Images/massages/For mobile/leather texture.png?v=85f0a18a0a40");
+    --site-background-size: 100% 100%;
+    --phone-background-overlay: rgba(22, 51, 43, 0.35);
+    --treatment-photo-radius: 1.25rem;
+    --secondary-color: var(--amber);
+    --clr-accent-100: var(--cypress);
+    --clr-accent-200: var(--amber);
+    --clr-accent-300: var(--linen);
+    --clr-accent-400: var(--linen);
+    --button-background: transparent;
+    --button-hover: var(--linen);
+    --rule: #A6C1B1;
+    --rule-dark: var(--rule);
+}
+
+html, body { background-color: var(--cypress); }
+body { color: var(--linen); }
+p, h1, h2, button { color: inherit; }
+::selection { background: var(--amber); color: var(--ink); }
+
+/* The video covers this fixed backdrop throughout the opening section. */
+body::before,
+body::after {
+    /* Cover the largest viewport before mobile browser controls retract. */
+    inset: 0 0 auto;
+    height: 100vh;
+    height: 100lvh;
+    background-image:
+        linear-gradient(var(--phone-background-overlay), var(--phone-background-overlay)),
+        var(--site-background-image);
+    background-size: var(--site-background-size);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.appointment-button {
+    border-color: transparent;
+    color: var(--linen);
+}
+
+.appointment-button:hover,
+.appointment-button:focus-visible { color: var(--cypress); }
+
+.nav-bar,
+.location-page .nav-bar,
+.treatment-info-body .nav-bar {
+    background-color: var(--cypress);
+    color: var(--linen);
+}
+
+.nav-bar.video-over-hero { background: transparent; }
+.nav-bar.video-over-hero.is-scrolled { background: rgba(16, 51, 43, 0.92); }
+.location-page .nav-bar,
+.location-page .nav-bar.menu-ready,
+.location-page .nav-bar.is-scrolled,
+.location-page .nav-bar.menu-ready.is-scrolled,
+.location-page .nav-bar.menu-open {
+    background: var(--cypress);
+    border-color: transparent;
+    box-shadow: none;
+}
+.location-page .nav-bar .nav-links { background: transparent; }
+.nav-bar .brand, .nav-bar .menu-toggle { color: var(--linen); }
+.menu-toggle { border-color: transparent; }
+.menu-toggle:hover, .menu-toggle:focus-visible { color: var(--cypress); }
+.brand-logo, .footer img { filter: none; }
+.language-globe { filter: invert(1); }
+
+.nav-inner > .appointment-button,
+.appointment-button.session-booking-button,
+.menu-treatment-actions .appointment-button:first-child,
+.treatment-detail header .appointment-button,
+.appointment-button.booking-submit,
+.location-actions .appointment-button:first-of-type {
+    --button-hover: var(--amber-lift);
+    border: 1px solid transparent;
+    border-radius: 0;
+    background-color: var(--amber);
+    color: #fff;
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.nav-inner > .appointment-button:hover,
+.nav-inner > .appointment-button:focus-visible,
+.appointment-button.session-booking-button:hover,
+.appointment-button.session-booking-button:focus-visible,
+.menu-treatment-actions .appointment-button:first-child:hover,
+.menu-treatment-actions .appointment-button:first-child:focus-visible,
+.treatment-detail header .appointment-button:hover,
+.treatment-detail header .appointment-button:focus-visible,
+.appointment-button.booking-submit:hover,
+.appointment-button.booking-submit:focus-visible,
+.location-actions .appointment-button:first-of-type:hover,
+.location-actions .appointment-button:first-of-type:focus-visible {
+    border-color: transparent;
+    color: #fff;
+}
+
+.hero-video-background { background: var(--cypress); }
+.hero-video-background::after {
+    background:
+        linear-gradient(100deg,
+            rgba(10, 26, 21, 0.94) 0%,
+            rgba(14, 34, 28, 0.86) 30%,
+            rgba(16, 40, 33, 0.72) 62%,
+            rgba(16, 40, 33, 0.58) 100%),
+        linear-gradient(to top, rgba(10, 26, 21, 0.9) 0%, rgba(10, 26, 21, 0) 42%);
+}
+.hero-title, .hero-subtitle { color: var(--linen); }
+.hero-button {
+    --button-hover: #FFFFFF;
+    border-color: var(--rule);
+    color: var(--linen);
+}
+.hero-button:hover, .hero-button:focus-visible { border-color: #FFFFFF; color: var(--cypress); }
+
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 2.4rem; }
+.hero-actions .hero-button { margin-top: 0; }
+@media (max-width: 767px), (max-width: 900px) and (max-height: 500px) {
+    .hero-actions { justify-content: center; margin-top: 28px; }
+    .hero-actions .hero-button { padding-inline: 16px; }
+}
+.first-section .letter-lift:hover > span { color: var(--amber); }
+
+#services { --button-background: transparent; }
+.second-section, .services-desktop-stage { background: transparent; color: var(--linen); }
+.second-section::before, .services-desktop-stage::before { background: var(--rule); }
+.services-category-control h2,
+.services-category-toggle { color: var(--linen); }
+.massage-desktop-arrow { color: var(--euc); border-color: var(--rule); }
+
+.second-section > .appointment-button,
+.services-desktop-stage > .appointment-button,
+.fourth-section > .appointment-button {
+    --button-hover: var(--linen);
+    border-color: var(--rule);
+    color: var(--linen);
+}
+.second-section > .appointment-button:hover,
+.second-section > .appointment-button:focus-visible,
+.services-desktop-stage > .appointment-button:hover,
+.services-desktop-stage > .appointment-button:focus-visible,
+.fourth-section > .appointment-button:hover,
+.fourth-section > .appointment-button:focus-visible { border-color: var(--linen); color: var(--cypress); }
+
+.services-natural-flow .services-category-control { background-color: transparent; }
+.services-natural-flow .services-desktop-stage > .appointment-button {
+    background-color: var(--cypress);
+}
+.massage-benefits, .services-desktop-stage .massage-benefits {
+    background-color: transparent;
+    color: var(--linen);
+}
+.massage-card,
+.massage-container .image-animation h3,
+.massage-container .service-information,
+.services-scroll-card { background-color: transparent; color: var(--linen); }
+.massage-container .service-information p,
+.services-card-copy p,
+.services-card-copy li { color: var(--linen); }
+
+.services-category-options {
+    background: var(--cypress);
+    border-color: var(--rule);
+}
+.services-category-options button { color: var(--linen); }
+.services-category-options button:hover,
+.services-category-options button:focus-visible,
+.services-category-options button[aria-pressed="true"],
+.services-category-options button[aria-expanded="true"] {
+    background: transparent;
+    color: var(--linen);
+    box-shadow: inset 0 0 0 1px var(--amber);
+}
+
+.third-section, .fourth-section { color: var(--linen); }
+.third-section > h1, .fourth-section > h1 { border-bottom-color: var(--rule); }
+.third-section .service-price-value, .fourth-section .service-price-value { color: var(--amber); }
+
+/* Every static and generated More info link shares the reference treatment.
+   Hover movement, easing and reduced-motion behavior come from Motion.css. */
+.appointment-button.session-info-button,
+.menu-treatment-actions .appointment-button:last-child {
+    border-color: transparent;
+    border-bottom-color: var(--amber);
+    border-radius: 0;
+    --button-background: transparent;
+    --button-hover: transparent;
+    background: none;
+    color: var(--linen);
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 700;
+    line-height: 1.2;
+}
+.appointment-button.session-info-button:hover,
+.appointment-button.session-info-button:focus-visible,
+.menu-treatment-actions .appointment-button:last-child:hover,
+.menu-treatment-actions .appointment-button:last-child:focus-visible {
+    background: none;
+    border-bottom-color: var(--amber-lift);
+    color: var(--amber-lift);
+}
+
+a.appointment-button:focus-visible,
+button.appointment-button:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 4px;
+}
+
+.treatment-detail { border-top-color: var(--rule-dark); }
+.booking-field input, .booking-field textarea {
+    background: transparent;
+    border-color: var(--rule);
+    color: var(--linen);
+    color-scheme: dark;
+}
+.booking-choice > input:checked + .booking-choice-content {
+    border-color: var(--linen);
+    background: rgba(246, 241, 231, 0.12);
+    color: var(--linen);
+}
+.booking-field input:focus, .booking-field textarea:focus {
+    border-color: var(--linen);
+    background: rgba(246, 241, 231, 0.12);
+}
+.booking-text-button { color: var(--linen); text-decoration-color: var(--amber); }
+.booking-step-list button:disabled { color: rgba(246, 241, 231, 0.5); }
+.booking-summary-box,
+.booking-step-list li,
+.booking-choice-content,
+.booking-service-row,
+.booking-review dt,
+.booking-review dd,
+.booking-summary-toggle { border-color: var(--rule); }
+.booking-footer { background: var(--cypress); border-color: var(--rule); }
+
+.location-panel { background: var(--cypress); color: var(--linen); border-color: var(--rule); }
+.location-panel-header, .location-card { border-bottom-color: var(--rule); }
+.location-studio-image {
+    color: var(--linen);
+    border-color: var(--rule);
+    background: var(--pine);
+}
+.location-kind, .location-details dt { color: var(--euc); }
+.location-select, .location-details a, .location-map-link { color: var(--linen); }
+.location-actions .appointment-button {
+    --button-hover: var(--linen);
+    color: var(--linen);
+    border-color: transparent;
+}
+.location-actions .appointment-button:first-of-type {
+    --button-hover: var(--amber-lift);
+    color: #fff;
+    border-color: transparent;
+}
+.location-actions .appointment-button:hover,
+.location-actions .appointment-button:focus-visible { color: var(--cypress); }
+.location-actions .appointment-button:first-of-type:hover,
+.location-actions .appointment-button:first-of-type:focus-visible { color: #fff; }
+.location-panel :focus-visible, .location-map :focus-visible { outline-color: var(--amber); }
+.location-pin span { border-color: var(--linen); background: var(--amber); }
+.location-pin.is-active span { outline-color: var(--amber); background: var(--cypress); }
+.location-map .leaflet-control-zoom a,
+.location-map .leaflet-control-attribution { color: var(--ink); }
+.footer { background: transparent; color: var(--linen); }
+
+@media (max-width: 900px) {
+    .hero-video-background {
+        background-image:
+            linear-gradient(var(--phone-background-overlay), var(--phone-background-overlay)),
+            var(--site-background-image);
+        background-size: var(--site-background-size);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .hero-video-background::after {
+        background: linear-gradient(to bottom,
+            rgba(10, 26, 21, 0.78) 0%,
+            rgba(12, 30, 25, 0.88) 38%,
+            rgba(10, 26, 21, 0.94) 100%);
+    }
+    .nav-links { background-color: var(--cypress); }
+}
+
+/* Typography, dimensions and spacing copied from the rebranded reference.
+   The original animation declarations remain in the existing motion files. */
+:root {
+    --button-radius: 2px;
+    --font-neue-haas-unica: "neue-haas-unica", "Mulish", system-ui, -apple-system, sans-serif;
+    --font-display: "fiona", "Bodoni Moda", Didot, Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+#services h2, #services h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    text-transform: capitalize;
+}
+
+p, h1, h2, button {
+    font-weight: 400;
+}
+
+p {
+    line-height: 1.68;
+}
+
+.appointment-button {
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.session-info-button,
+.menu-treatment-actions .appointment-button:last-child {
+    border-bottom: 1px solid var(--amber);
+    border-radius: 0;
+    padding-inline: 0.25rem;
+}
+
+.nav-bar {
+    border-bottom: 1px solid var(--rule);
+}
+
+.nav-links a {
+    position: relative;
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+}
+
+/* Equal side columns keep navigation centered independently of either logo or CTA. */
+@media (min-width: 901px) {
+    .nav-inner { grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr); }
+    .nav-brand-group { grid-area: 1 / 1; }
+    .nav-links { grid-area: 1 / 2; justify-self: center; justify-content: center; }
+    .nav-inner > .appointment-button { grid-area: 1 / 3; }
+}
+
+.nav-inner > .appointment-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.menu-toggle {
+    border-radius: 2px;
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 600;
+}
+
+.language-label {
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+.language-label > span {
+    margin-left: 8px;
+    padding: 3px 6px;
+    border-radius: 2px;
+    transition: color 400ms var(--motion-ease), background-color 400ms var(--motion-ease);
+}
+.language-selector:is(:hover, :focus-visible) .language-label > span {
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    text-underline-offset: 5px;
+}
+@media (prefers-reduced-motion: reduce) {
+    .language-label > span { transition: none; }
+}
+
+.first-section {
+    position: relative;
+    border-bottom: 0;
+}
+
+.hero-copy {
+    position: relative;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.4vw, 5.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+}
+
+/* Desktop widths: exactly two lines, split only at the line break after the comma.
+   The text column grows to fit the longer line instead of wrapping it. */
+@media (min-width: 901px) {
+    .hero-layout { grid-template-columns: minmax(min-content, 1.1fr) minmax(0, 1fr); }
+    .hero-title { white-space: nowrap; }
+}
+
+.hero-subtitle {
+    margin-top: 1.6rem;
+    max-width: 34ch;
+    font-family: var(--font-neue-haas-unica);
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+    line-height: 1.6;
+}
+
+.hero-button {
+    margin-top: 2.4rem;
+    padding: 1.05rem 2.2rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-size: 1.02rem;
+}
+
+.second-section > h2,
+.services-category-control h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+}
+
+#services .services-category-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    max-width: 100%;
+    padding: 14px 4px;
+    border: 1px solid transparent;
+    border-bottom-color: var(--amber);
+    border-radius: 0;
+    background: none;
+    color: var(--linen);
+    font-family: var(--font-neue-haas-unica);
+    font-size: calc(18px + var(--service-text-increase, 0px));
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--hover-duration) var(--motion-ease);
+}
+#services .services-category-toggle:is(:hover, :focus-visible) { color: var(--amber-lift); }
+#services .services-category-toggle:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
+.services-category-label { min-width: 0; }
+.services-category-icon-wrapper { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; width: 14px; height: 14px; color: inherit; }
+.services-category-icon-svg { width: 14px; height: 14px; transition: transform 250ms var(--motion-ease); }
+.services-category-toggle[aria-expanded="true"] .services-category-icon-svg { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+    #services .services-category-toggle, .services-category-icon-svg { transition: none; }
+}
+
+.second-section > .appointment-button,
+.services-desktop-stage > .appointment-button {
+    font-family: var(--font-neue-haas-unica);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+}
+
+.massage-benefits,
+.services-desktop-stage .massage-benefits {
+    position: relative;
+    border-radius: 0;
+    padding-left: 0;
+}
+
+.massage-benefits h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    max-width: 16ch;
+}
+
+.massage-benefits > p {
+    max-width: 48ch;
+    font-weight: 400;
+}
+
+.massage-benefits .service-benefits-heading,
+#services .service-benefits-heading {
+    margin-top: 2rem;
+    font-family: var(--font-neue-haas-unica);
+    font-size: 0.86rem !important;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.massage-benefits ul,
+.services-benefits-copy ul,
+.services-card-copy ul {
+    margin-top: 0.9rem;
+    padding-left: 0;
+    list-style: none;
+    max-width: 46ch;
+}
+
+.massage-benefits li,
+.services-benefits-copy li,
+.services-card-copy li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-weight: 400;
+    color: var(--linen);
+    opacity: 0.92;
+}
+
+.massage-benefits li::before,
+.services-benefits-copy li::before,
+.services-card-copy li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-weight: 700;
+}
+
+#services .service-duration-value,
+.service-duration-value {
+    margin-top: 1.9rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-neue-haas-unica);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    opacity: 0.58;
+}
+
+#services .service-price-value,
+.service-price-value {
+    margin-top: 0.45rem;
+    padding-top: 0;
+    border-top: 0;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.005em;
+}
+
+.third-section .service-price-value,
+.fourth-section .service-price-value {
+    margin-top: 1rem;
+}
+
+.session-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.9rem 1.8rem;
+    margin-top: 2rem;
+}
+
+.massage-treatment,
+.services-scroll-card {
+    border-radius: 6px;
+}
+
+.services-card-copy h3 {
+    font-family: var(--font-display);
+}
+
+.massage-card {
+    border-radius: 8px;
+}
+
+.massage-container .image-animation h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+#services:not(.services-sequence-ready) .massage-card {
+    padding: 20px;
+}
+
+.services-category-options {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+}
+
+.services-category-options button {
+    border-radius: 2px;
+    font-family: var(--font-neue-haas-unica);
+}
+
+/* Blur the page beneath the open disclosure, keeping its controls sharp. */
+.services-desktop-stage.services-menu-open { z-index: 30; }
+.services-menu-open .services-category-control { z-index: 7; }
+.services-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 6;
+    background: transparent;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+.services-menu-backdrop[hidden] { display: none; }
+
+.mobile-menu-icon, .mobile-booking-navigation, .mobile-home-navigation, .phone-service-navigation { display: none; }
+.nav-bar.menu-open { z-index: 30; }
+.mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 29;
+    background: transparent;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+.mobile-menu-backdrop[hidden] { display: none; }
+
+.third-section,
+.fourth-section {
+    position: relative;
+}
+
+.third-section > h1,
+.fourth-section > h1 {
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-align: left;
+}
+
+.third-section p,
+.fourth-section p {
+    font-weight: 400;
+}
+
+.third-section p {
+    margin-inline: 0;
+}
+
+.fourth-section > div {
+    position: relative;
+    padding: 1.6rem 0 1.8rem;
+    border-top: 1px solid var(--rule);
+}
+
+.fourth-section h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+}
+
+.fourth-section .service-price-value,
+.third-section .service-price-value {
+    margin-top: 1rem;
+    padding-top: 0;
+    border-top: 0;
+    font-size: 1.25rem;
+}
+
+.fourth-section > * {
+    position: relative;
+}
+
+.treatment-info-page h1,
+.menu-page h1,
+.booking-layout h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.treatment-info-group > h2,
+.treatment-detail h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+}
+
+.treatment-price,
+.menu-page .service-price-value {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+}
+
+.treatment-detail h4 {
+    margin-top: 1.5rem;
+    font-family: var(--font-neue-haas-unica);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.info-page-content .treatment-detail h4 {
+    font-size: 0.96rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+.info-page-content .treatment-detail:target h3 {
+    color: var(--linen);
+    animation: info-service-title-pulse 1s ease-in-out 3;
+}
+@keyframes info-service-title-pulse {
+    0%, 100% { color: var(--linen); }
+    50% { color: var(--amber-lift); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .info-page-content .treatment-detail:target h3 { animation: none; }
+}
+
+.treatment-detail header p:not(.treatment-price) {
+    font-family: var(--font-neue-haas-unica);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.treatment-price {
+    margin-top: 0.3rem;
+    font-size: 1.45rem;
+}
+
+/* Keep the menu's title positions and section spacing; normalize content gaps. */
+.menu-page .treatment-detail h3 { margin-bottom: 24px; }
+.menu-page .treatment-detail { row-gap: 0; }
+.menu-page .treatment-detail > h3 { grid-column: 1; grid-row: 1; }
+.menu-page .treatment-detail > header { grid-column: 1; grid-row: 2; }
+.menu-page .treatment-detail > div { grid-column: 2; grid-row: 2; align-self: center; }
+@media (max-width: 768px) {
+    .menu-page .treatment-detail > h3,
+    .menu-page .treatment-detail > header,
+    .menu-page .treatment-detail > div { grid-column: 1; grid-row: auto; }
+    .menu-page .treatment-detail > div { margin-top: 16px; }
+}
+.menu-page .treatment-detail header > p,
+.menu-page .treatment-detail > div > p,
+.menu-page .treatment-detail ul { margin: 0; }
+.menu-page .treatment-detail header > p + p,
+.menu-page .menu-treatment-actions { margin-top: 24px; }
+.menu-page .treatment-detail h4 { margin: calc(32px + 1rem) 0 12px; }
+.menu-page .menu-treatment-image {
+    display: block;
+    width: 80%;
+    height: auto;
+    aspect-ratio: 1586 / 992;
+    margin-top: 24px;
+    border-radius: var(--treatment-photo-radius);
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.treatment-detail ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.treatment-detail li {
+    position: relative;
+    padding-left: 1.4rem;
+}
+
+.treatment-detail li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-weight: 700;
+}
+
+.menu-treatment-actions,
+.treatment-info-page .session-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 1.6rem;
+}
+
+.location-panel {
+    border-radius: 6px;
+}
+
+.location-panel h1,
+.location-card h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+}
+
+.location-kind {
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.location-actions .appointment-button {
+    border-radius: 2px;
+}
+
+.booking-choice {
+    border-radius: 4px;
+    border: 1px solid var(--rule-dark);
+}
+
+.booking-step h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+}
+
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
+    border-radius: 2px;
+    border: 1px solid var(--rule);
+    font-family: var(--font-neue-haas-unica);
+}
+
+.footer {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 26rem);
+    justify-content: center;
+    row-gap: 20px;
+    padding: 4.5rem 1.5rem 3.5rem;
+}
+
+.footer > img {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+/* Temporarily hide the social media logos. */
+.footer-social-icons {
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 0;
+}
+.footer-social-icons img {
+    width: 32px;
+    height: 32px;
+    max-width: none;
+    margin: 0;
+    object-fit: contain;
+}
+.footer-social-icons .footer-instagram { filter: invert(1); }
+.about-page { background: var(--cypress); color: var(--linen); }
+.about-content { max-width: 900px; margin: auto; padding: 48px 24px 80px; font-family: var(--font-neue-haas-unica); line-height: 1.7; }
+.about-content h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.15; margin: 0 0 24px; }
+.about-content h2 { font-size: 28px; line-height: 1.3; margin: 32px 0 16px; }
+.about-content p { margin: 16px 0; }
+.about-content address { font-style: normal; }
+.about-content a:not(.appointment-button) { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.about-content .appointment-button { margin-top: 12px; }
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: clamp(2.1rem, 9vw, 3rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1.02rem;
+    }
+
+    .service-price-value {
+        font-size: 1.2rem;
+    }
+
+}
+
+.appointment-button.session-info-button,
+.menu-treatment-actions .appointment-button:last-child { font-weight: 700; }
+
+/* Information underlines animate independently of the text. */
+#services .has-service-underline {
+    position: relative;
+    border-bottom-color: transparent;
+}
+.service-underline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: var(--amber);
+    pointer-events: none;
+}
+.has-service-underline:is(:hover, :focus-visible) .service-underline { background: var(--amber-lift); }
+
+/* Galleries fill the same rounded frame as every other treatment photo. */
+.massage-treatment .services-photo-frame {
+    border-radius: var(--treatment-photo-radius);
+}
+.massage-treatment .services-photo-frame.has-gallery > .services-photo-content {
+    top: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transform: none;
+}
+.services-gallery-arrow {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: rgba(22, 51, 43, 0.85);
+    color: var(--linen);
+    transform: translateY(-50%);
+}
+.services-gallery-previous { left: 12px; }
+.services-gallery-next { right: 12px; }
+.services-gallery-arrow::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+}
+.services-gallery-previous::before { transform: translateX(2px) rotate(135deg); }
+.services-gallery-next::before { transform: translateX(-2px) rotate(-45deg); }
+.services-gallery-arrow:hover,
+.services-gallery-arrow:focus-visible { color: var(--amber-lift); border-color: var(--amber); }
+.services-photo-frame.has-gallery:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.services-gallery-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+#services:not(.services-sequence-ready) .massage-1 .image-animation h3 {
+    background-image: url("/Images/massages/posoperative/posoperative1.jpeg");
+}
+
+/* Phone treatments follow the centered reference, with native swipe tracks. */
+.services-phone-layout .services-desktop-stage {
+    position: relative;
+    top: 0;
+    display: block;
+    height: auto;
+    min-height: 0;
+    padding: 36px 0 64px;
+}
+#services.services-phone-layout .services-category-control,
+#services.services-phone-layout .services-desktop-stage > .appointment-button,
+#services.services-phone-layout .services-desktop-stage > .session-actions,
+#services.services-phone-layout .massage-benefits,
+#services.services-phone-layout .massage-treatment,
+.services-phone-layout .services-desktop-stage::before { display: none; }
+.services-phone-groups { display: grid; gap: 64px; min-width: 0; }
+.services-phone-category { min-width: 0; scroll-margin-top: calc(var(--nav-height, 64px) + 16px); }
+#services .services-phone-category-heading {
+    margin: 0 20px 24px;
+    color: var(--euc);
+    font-family: var(--font-neue-haas-unica);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.services-phone-track {
+    --phone-gutter: max(24px, calc((100% - 30rem) / 2));
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    align-items: start;
+    gap: 16px;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px var(--phone-gutter) 16px;
+    scroll-padding-inline: var(--phone-gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    direction: ltr;
+}
+.services-phone-track::-webkit-scrollbar,
+.services-phone-photo-strip::-webkit-scrollbar { display: none; }
+.services-phone-track-single { justify-content: center; }
+.services-phone-track:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; }
+.services-phone-layout .services-scroll-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    gap: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+.services-phone-overview { text-align: center; }
+.services-phone-overview h3 {
+    margin: 0 auto 20px;
+    min-height: var(--phone-title-height, 0px);
+    max-width: 17ch;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 7.5vw, 2.75rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    overflow-wrap: break-word;
+}
+.services-phone-overview > p {
+    max-width: 36ch;
+    min-height: var(--phone-description-height, 0px);
+    margin: 0 auto;
+    font-size: clamp(0.95rem, 4vw, 1.125rem);
+    line-height: 1.55;
+    color: var(--linen);
+}
+.services-phone-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: min(100%, 20rem);
+    margin: 24px auto;
+}
+.services-phone-tabs button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    width: 100%;
+    height: auto;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    color: var(--linen);
+    font: 500 1rem/1.2 var(--font-neue-haas-unica);
+    cursor: pointer;
+}
+.services-phone-tabs button[aria-selected="true"] { border-color: var(--amber); box-shadow: 3px 3px 0 rgba(192, 138, 62, 0.3); }
+.services-phone-tabs button:focus-visible { outline: 2px solid var(--linen); outline-offset: 3px; }
+.services-phone-panel { min-width: 0; width: 100%; }
+.services-phone-panel[hidden] { display: none; }
+.services-phone-image { height: var(--phone-panel-height, clamp(200px, 62vw, 320px)); }
+.services-phone-layout .services-card-photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    margin: 0;
+    border-radius: var(--treatment-photo-radius);
+}
+.services-phone-layout .services-photo-frame > .services-photo-content {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+}
+/* Use the same opaque outline for illustrations on every layout. */
+.services-photo-frame[data-image-fit="contain"],
+.menu-page .menu-treatment-image[src^="/Images/waxing/"] {
+    box-sizing: border-box;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+}
+.menu-page .menu-treatment-image[src^="/Images/waxing/"] { object-fit: contain; }
+
+/* Show complete artwork at its natural proportions, without photo overscan. */
+.services-photo-frame[data-image-fit="contain"] > .services-photo-content {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+}
+
+/* Keep desktop images inset and align the divider with the menu and image. */
+@media (min-width: 768px) {
+    #services .services-desktop-stage::before {
+        top: var(--services-divider-top, calc(var(--nav-height, 4rem) + clamp(1rem, 2vw, 2rem)));
+        bottom: var(--services-divider-bottom, clamp(1rem, 2vw, 2rem));
+    }
+    #services .massage-treatment,
+    #services .services-scroll-card,
+    #services .services-photo-frame {
+        border: 0;
+    }
+}
+
+.services-phone-benefits {
+    min-height: var(--phone-panel-height, clamp(200px, 62vw, 320px));
+    padding: 20px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+}
+#services .services-phone-benefits .service-benefits-heading { margin: 0 0 16px; padding: 0; }
+.services-phone-benefits ul { padding: 0; margin: 0; list-style: none; }
+.services-phone-benefits li { position: relative; padding-left: 20px; font-size: 1rem; line-height: 1.55; }
+.services-phone-benefits li + li { margin-top: 12px; }
+.services-phone-benefits li::before { content: '+'; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+.services-phone-meta { min-height: var(--phone-meta-height, 0px); margin-top: 24px; text-align: center; }
+#services .services-phone-meta .service-duration-value {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0.75rem !important;
+    line-height: 1.5;
+    text-align: center;
+}
+#services .services-phone-meta .service-price-value { font-size: 1.35rem !important; line-height: 1.3; margin: 8px 0 0; text-align: center; }
+html #services.services-phone-layout .session-actions {
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    width: 100%;
+    margin: 24px 0 0;
+}
+html #services.services-phone-layout .session-actions > .appointment-button {
+    flex: 0 0 auto;
+    align-self: center;
+    margin: 0;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    line-height: 1.3;
+    white-space: normal;
+}
+html #services.services-phone-layout .session-actions > .session-info-button { padding-inline: 4px; }
+.services-phone-photo-strip { display: none; }
+.services-phone-layout .services-gallery-arrow { display: none; }
+.services-phone-layout .has-gallery > .services-photo-content,
+.services-phone-layout .has-phone-gallery > .services-photo-content { display: none; }
+.services-phone-layout .services-phone-photo-strip {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+.services-phone-photo-strip img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; scroll-snap-stop: always; }
+
+@media (max-width: 767px), (max-width: 900px) and (max-height: 500px) {
+    .menu-treatment-actions { flex-direction: column; align-items: center; }
+    .treatment-info-page .menu-treatment-actions .appointment-button { align-self: center; margin: 0; }
+    .nav-bar.menu-ready,
+    .nav-bar.menu-ready.is-scrolled {
+        background: var(--cypress);
+        border-color: transparent;
+        box-shadow: none;
+        pointer-events: none;
+    }
+    .nav-bar.menu-ready:not(.menu-open) .nav-brand-group { visibility: hidden; }
+    .nav-bar.menu-ready .menu-toggle,
+    .nav-bar.menu-open .nav-brand-group,
+    .nav-bar.menu-open .nav-links { pointer-events: auto; }
+    .nav-inner { position: relative; padding: 10px 24px; gap: 12px; }
+    .nav-brand-group { grid-column: 1; grid-row: 1; }
+    .nav-brand-group .brand-logo { width: clamp(130px, 38vw, 176px); }
+    .nav-inner > .menu-toggle { grid-column: 2; grid-row: 1; }
+    .nav-bar .menu-toggle {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        padding: 10px;
+        border: 1px solid var(--rule);
+        background: transparent;
+        color: var(--linen);
+    }
+    .mobile-menu-label { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+    .phone-service-navigation, .mobile-booking-navigation { display: block; }
+    .nav-links .phone-service-navigation a { font-size: 1.2rem; }
+    .nav-bar.menu-open .nav-inner > .appointment-button { display: none; }
+    .mobile-booking-navigation .appointment-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 8px;
+        border: 0;
+        background-color: var(--amber);
+        color: #fff;
+    }
+    .hero-layout { display: flex; justify-content: center; align-items: center; padding: 56px 24px; }
+    .hero-copy { width: 100%; padding: 0; text-align: center; }
+    .hero-title { margin-inline: auto; max-width: 14ch; font-size: clamp(2.5rem, 10vw, 4rem); line-height: 1.06; }
+    .hero-subtitle { margin: 24px auto 0; max-width: 26ch; font-size: clamp(1rem, 4.5vw, 1.25rem); line-height: 1.5; }
+    .hero-button { margin-top: 28px; }
+}
+/* Paint the white button through a mask so its lines are actual openings. */
+@media (max-width: 900px) {
+    .nav-inner { position: relative; }
+    .nav-bar.menu-ready.video-over-hero:not(.menu-open) {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+    }
+    .nav-bar.menu-ready .language-selector { visibility: visible; pointer-events: auto; }
+    .nav-bar.menu-open { overflow: visible; background: var(--cypress); }
+    .nav-bar.menu-open .nav-inner { position: static; }
+    .nav-bar.menu-open .nav-links {
+        position: absolute;
+        grid-area: auto;
+        justify-self: auto;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: calc(100dvh - var(--nav-height, 68px) - 36px);
+        overflow-y: auto;
+        padding: 0;
+        border: 1px solid var(--rule);
+        border-top: 0;
+        border-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background: var(--cypress);
+        text-align: center;
+        gap: 0;
+    }
+    .phone-service-navigation, .mobile-booking-navigation { display: block; }
+    .nav-bar.menu-open .nav-links > li { flex-shrink: 0; }
+    .nav-bar.menu-open .nav-links > li::after { display: none; }
+    .nav-bar.menu-open .nav-links > li:not(.mobile-booking-navigation) > a {
+        padding: 14px 12px;
+        border-bottom: 1px solid var(--rule);
+        text-align: center;
+        font-size: 1.05rem;
+    }
+    .nav-bar.menu-open .nav-links > .mobile-home-navigation > a { border-top: 1px solid var(--rule); }
+    .nav-bar.menu-open .mobile-booking-navigation .appointment-button {
+        width: 100%;
+        max-width: none;
+        min-height: 52px;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        justify-content: center;
+        background-color: var(--amber);
+        color: #fff;
+    }
+    .nav-bar.menu-open .mobile-booking-navigation .appointment-button:is(:hover, :focus-visible) { transform: none; }
+    .nav-bar.menu-ready .menu-toggle {
+        position: relative;
+        display: inline-flex;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+    .nav-bar.menu-ready .menu-toggle::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: #fff;
+        pointer-events: none;
+        --menu-cutout: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='white' fill-rule='evenodd' d='M0 0h48v48H0z M12 16h24v2H12z M12 23h24v2H12z M12 30h24v2H12z'/%3E%3C/svg%3E");
+        -webkit-mask: var(--menu-cutout) center / 100% 100% no-repeat;
+        mask: var(--menu-cutout) center / 100% 100% no-repeat;
+    }
+    .nav-bar.menu-open .menu-toggle::before {
+        --menu-cutout: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='white' fill-rule='evenodd' d='M0 0h48v48H0z M16 14l8 8 8-8 2 2-8 8 8 8-2 2-8-8-8 8-2-2 8-8-8-8z'/%3E%3C/svg%3E");
+    }
+    .nav-bar.menu-ready .mobile-menu-icon { display: none; }
+    .nav-bar.menu-ready .mobile-menu-label { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+    .nav-bar.menu-ready .menu-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+    .nav-links > .nav-link--menu { display: none; }
+    .nav-links > .mobile-home-navigation { display: block; }
+}
+
+/* Shared Back to services button for treatment details and booking success. */
+.back-services-button {
+    --back-arrow-size: 48px;
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    min-height: var(--back-arrow-size);
+    padding: 12px 18px 12px calc(var(--back-arrow-size) + 12px);
+    border: 0;
+    border-radius: 2px;
+    background: transparent;
+    color: var(--linen);
+    font-family: var(--font-neue-haas-unica);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 350ms ease;
+}
+.back-services-button::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0 auto 0 0;
+    width: var(--back-arrow-size);
+    border-radius: inherit;
+    background: var(--amber);
+    pointer-events: none;
+    transition: width 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.back-services-button__arrow {
+    position: absolute;
+    z-index: 2;
+    inset: 0 auto 0 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--back-arrow-size);
+    color: #fff;
+    pointer-events: none;
+    transition: width 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.back-services-button__arrow svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+.back-services-button__label { position: relative; z-index: 0; min-width: 0; }
+.back-services-button:is(:hover, :focus-visible, :active) {
+    color: #fff;
+}
+.back-services-button:is(:hover, :focus-visible, :active)::before,
+.back-services-button:is(:hover, :focus-visible, :active) .back-services-button__arrow { width: 100%; }
+.back-services-button:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
+
+@media (max-width: 480px) {
+    .back-services-button { --back-arrow-size: 44px; font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .back-services-button,
+    .back-services-button::before,
+    .back-services-button__arrow { transition: none; }
+}
+
+
+/* About page call to action uses the same gold button as the rest of the site. */
+.about-content .appointment-button {
+    --button-hover: var(--amber-lift);
+    display: inline-flex;
+    padding: 14px 28px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    background-color: var(--amber);
+    color: #fff;
+    font-family: var(--font-neue-haas-unica);
+    font-weight: 700;
+    line-height: 1.2;
+}
+.about-content .appointment-button:hover,
+.about-content .appointment-button:focus-visible { border-color: transparent; color: #fff; }
